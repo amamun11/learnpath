@@ -4,6 +4,35 @@
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src={% static 'js/webgazer.js' %}></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        webgazer.begin();
+        setInterval(async ()=> {
+            var prediction = await webgazer.getCurrentPrediction();
+            if(prediction) {
+                console.log(prediction);
+
+                if(prediction.y < 120) {
+                    Swal.fire({
+                        title: 'cheating mat kar bsdk',
+                        text: 'sudhar jaa!',
+                        icon: 'cheating mat kar bsdk',
+                        confirmButtonText: 'nikal bsdk'
+                    })
+                }
+            }
+        }, 500)
+        // webgazer.setGazeListener(function (data, elapsedTime) {
+        //     if (data == null) {
+        //         return;
+        //     }
+        //     var xprediction = data.x; //these x coordinates are relative to the viewport
+        //     var yprediction = data.y; //these y coordinates are relative to the viewport
+        //     console.log(elapsedTime); //elapsed time is based on time since begin was called
+        // }).begin();
+    </script>
 </head>
 
 
@@ -21,37 +50,42 @@
                 <h4 style="text-align: right;">[{{q.marks}} Marks]</h4>
             </div>
         </div>
-        <input type="hidden" name="csrfmiddlewaretoken" value="C24rUotmdHawVQJL3KrqiWxvti8UffOFYUc8TRbZtLt36AVLdP3jbkzUVe3beRAa">
+        <input type="hidden" name="csrfmiddlewaretoken"
+            value="C24rUotmdHawVQJL3KrqiWxvti8UffOFYUc8TRbZtLt36AVLdP3jbkzUVe3beRAa">
 
 
         <div class="form-check mx-4 d-flex align-items-center">
-            <input class="form-check-input" type="radio" name="{{ forloop.counter }}" id="{{q.option1}}" value="Option1">
+            <input class="form-check-input" type="radio" name="{{ forloop.counter }}" id="{{q.option1}}"
+                value="Option1">
             <label class="form-check-label ml-3" for="option1">
-              {{q.option1}}
+                {{q.option1}}
             </label>
         </div>
 
 
         <div class="form-check mx-4 d-flex align-items-center">
-            <input class="form-check-input" type="radio" name="{{ forloop.counter }}" id="{{q.option2}}" value="Option2">
+            <input class="form-check-input" type="radio" name="{{ forloop.counter }}" id="{{q.option2}}"
+                value="Option2">
             <label class="form-check-label ml-3" for="option2">
-              {{q.option2}}
+                {{q.option2}}
             </label>
         </div>
 
 
         <div class="form-check mx-4 d-flex align-items-center">
-            <input class="form-check-input" type="radio" name="{{ forloop.counter }}" id="{{q.option3}}" value="Option3">
+            <input class="form-check-input" type="radio" name="{{ forloop.counter }}" id="{{q.option3}}"
+                value="Option3">
             <label class="form-check-label ml-3" for="option3">
-              {{q.option3}}
+                {{q.option3}}
             </label>
         </div>
 
 
         <div class="form-check mx-4 d-flex align-items-center">
-            <input class="form-check-input" type="radio" name="{{ forloop.counter }}" id="{{q.option4}}" value="Option4">
+            <input class="form-check-input" type="radio" name="{{ forloop.counter }}" id="{{q.option4}}"
+                value="Option4">
             <label class="form-check-label ml-3" for="option4">
-              {{q.option4}}
+                {{q.option4}}
             </label>
         </div>
 
@@ -61,7 +95,7 @@
 </div>
 
 <script>
-    function saveAns() {
+    function saveAns () {
 
         var ele = document.getElementsByTagName('input');
         for (i = 0; i < ele.length; i++) {
@@ -74,7 +108,7 @@
 
     }
 
-    function setCookie(cname, cvalue, exdays) {
+    function setCookie (cname, cvalue, exdays) {
         var d = new Date();
         d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
         var expires = "expires=" + d.toUTCString();
